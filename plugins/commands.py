@@ -125,7 +125,12 @@ async def start(client:Client, message):
 
     settings = await get_settings(int(data.split("_", 2)[1]))
     id = settings.get('fsub_id', AUTH_CHANNEL)
-    channel = int(id)
+
+if not id:  # अगर None या खाली string है तो default value दो
+    print("⚠ Warning: fsub_id is None, setting default value.")
+    id = AUTH_CHANNEL  # Default channel set कर दो
+
+channel = int(id)  # अब error नहीं आएगा
     if settings.get('fsub_id', AUTH_CHANNEL) and not await is_subscribed(client, message.from_user.id, channel):
         invite_link = await client.create_chat_invite_link(channel)
         btn = [[

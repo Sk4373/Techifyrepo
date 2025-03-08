@@ -33,7 +33,7 @@ async def pm_search(client, message):
 async def group_search(client, message):
     chat_id = message.chat.id
     settings = await get_settings(chat_id)
-    if settings["auto_filter"]:  
+    if settings["AUTO_FILTER"]:  
         if 'hindi' in message.text.lower() or 'tamil' in message.text.lower() or 'telugu' in message.text.lower() or 'malayalam' in message.text.lower() or 'kannada' in message.text.lower() or 'english' in message.text.lower() or 'gujarati' in message.text.lower(): 
             return await auto_filter(client, message)
 
